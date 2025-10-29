@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Create a temporary AppleScript file
+cat << 'EOF' > /tmp/toggle_plexamp.scpt
+tell application "System Events"
+    set plexampProcess to first process whose name is "Plexamp"
+    
+    if exists plexampProcess then
+        # App is running
+        if visible of plexampProcess and frontmost of plexampProcess then
+            # App is visible and frontmost, so hide it
+            set visible of plexampProcess to false
+        else
+            # App is hidden, so show it
+            set visible of plexampProcess to true
+            activate application "Plexamp"
+        end if
+    else
+        # App is not running, so launch it
+        activate application "Plexamp"
+    end if
+end tell
+EOF
+
+# Execute the AppleScript
+osascript /tmp/toggle_plexamp.scpt
+
+# Clean up the temporary file
+rm /tmp/toggle_plexamp.scpt
+

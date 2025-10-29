@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source $HOME/.zprofile
+
+start_plex_presence
+start_kavita_presence
+daily_wallpaper

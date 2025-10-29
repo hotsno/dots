@@ -1,0 +1,98 @@
+#!/bin/bash
+
+arg_fs=false
+arg_m=false
+arg_r=false
+arg_rf=false
+arg_n=false
+arg_p=false
+arg_mn=false
+arg_mp=false
+
+usage() {
+    echo "Usage: $0 [-fs] [-m] [-r] [-rf] [-n] [-p] [-mn] [-mp] <space>"
+    echo "  -fs    : Focus fullscreen space"
+    echo "  -m     : Move window to space and follow"
+    echo "  -r     : Focus recent space"
+    echo "  -rf    : Focus recent fullscreen space"
+    echo "  -n     : Focus next space of same type"
+    echo "  -p     : Focus previous space of same type"
+    echo "  -mn    : Move window to next space of same type"
+    echo "  -mp    : Move window to previous space of same type"
+    echo "  <space>: Space number for relevant commands"
+    exit 1
+}
+
+# Parse command line options
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -fs)
+            arg_fs=true
+            shift
+            ;;
+        -m)
+            arg_m=true
+            shift
+            ;;
+        -r)
+            arg_r=true
+            shift
+            ;;
+        -rf)
+            arg_rf=true
+            shift
+            ;;
+        -n)
+            arg_n=true
+            shift
+            ;;
+        -p)
+            arg_p=true
+            shift
+            ;;
+        -mn)
+            arg_mn=true
+            shift
+            ;;
+        -mp)
+            arg_mp=true
+            shift
+            ;;
+        *)
+            space="$1"
+            shift
+            ;;
+    esac
+done
+
+if [ "$arg_r" = true ]; then
+    yabai -m space --focus recent
+    exit
+elif [ "$arg_rf" = true ]; then
+    yabai -m space --focus $(python3 ~/.config/yabai/spaces.py get_fullscreen_index 1) || yabai -m space --focus recent
+    exit
+elif [ "$arg_n" = true ]; then
+    yabai -m space --focus $(python3 ~/.config/yabai/spaces.py get_next_space)
+    exit
+elif [ "$arg_p" = true ]; then
+    yabai -m space --focus $(python3 ~/.config/yabai/spaces.py get_previous_space)
+    exit
+elif [ "$arg_mn" = true ]; then
+    space=$(python3 ~/.config/yabai/spaces.py get_next_space); yabai -m window --space $space; yabai -m space --focus $space
+    exit
+elif [ "$arg_mp" = true ]; then
+    space=$(python3 ~/.config/yabai/spaces.py get_previous_space); yabai -m window --space $space; yabai -m space --focus $space
+    exit
+fi
+
+if [ "$arg_fs" = true ]; then
+    space=$(python3 ~/.config/yabai/spaces.py get_fullscreen_index "$space")
+else
+    space=$(python3 ~/.config/yabai/spaces.py get_nonfullscreen_index "$space")
+fi
+
+if [ "$arg_m" = true ]; then
+    yabai -m window --space $space; yabai -m space --focus $space
+else
+    yabai -m space --focus $space
+fi

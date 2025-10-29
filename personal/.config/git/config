@@ -1,0 +1,7 @@
+[user]
+	name = hotsno
+	email = 71658949+hotsno@users.noreply.github.com
+[init]
+	defaultBranch = main
+[core]
+	excludesFile = /home/hotsno/.config/git/ignore

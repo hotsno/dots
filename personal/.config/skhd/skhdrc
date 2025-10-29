@@ -1,0 +1,84 @@
+# Focus space
+alt - a      : switch 1
+alt - s      : switch 2
+alt - d      : switch 3
+alt - f      : switch 4
+alt - t      : switch 5
+alt - q      : switch 6
+alt - w      : switch 7
+alt - e      : switch 8
+
+alt - o      : osascript ~/.local/bin/toggle_menu_bar.scpt
+alt - i      : ~/.local/bin/post_discord_badge
+
+# Focus space (fullscreen)
+ctrl + alt - 1 : switch -fs 1
+ctrl + alt - 2 : switch -fs 2
+ctrl + alt - 3 : switch -fs 3
+ctrl + alt - 4 : switch -fs 4
+ctrl + alt - 5 : switch -fs 5
+ctrl + alt - 6 : switch -fs 6
+ctrl + alt - 7 : switch -fs 7
+ctrl + alt - 8 : switch -fs 8
+ctrl + alt - 9 : switch -fs 9
+
+# Move window to space and follow focus
+alt + shift - a : switch -m 1
+alt + shift - s : switch -m 2
+alt + shift - d : switch -m 3
+alt + shift - f : switch -m 4
+alt + shift - t : switch -m 5
+alt + shift - q : switch -m 6
+alt + shift - w : switch -m 7
+alt + shift - e : switch -m 8
+
+# Next/previous space
+ctrl - left  : switch -p
+ctrl - right : switch -n
+
+# Move next/previous space
+ctrl + cmd - left  : switch -mp
+ctrl + cmd - right : switch -mn
+
+# Recent space
+alt - z : switch -r
+
+# Toggle between 1st fullscreen space and recent space
+alt - m : switch -rf
+
+# Play/pause something playing through MPD
+alt - p : mpc toggle
+
+# Random wallpaper
+alt - r : random_wallpaper
+
+# Arrow keys
+alt - h : skhd -k 'left'
+alt - l : skhd -k 'right'
+alt - k : skhd -k 'up'
+alt - j : skhd -k 'down'
+
+alt - 1 : ~/.local/bin/toggle_plexamp
+
+# Disable shortcuts system-wide
+cmd - h : ls
+cmd - m : ls
+alt - g : ls
+
+# Firefox
+# alt - h : skhd -k 'ctrl + shift - tab'
+# alt - l : skhd -k 'ctrl - tab'
+# cmd - 0x35 : skhd -k '0x61' # cmd - escape to unfocus url bar
+
+# Next/previous display
+# ctrl - j : yabai -m display --focus prev
+# ctrl - k : yabai -m display --focus next
+
+# Float / Unfloat window: lalt - space
+lalt - space : yabai -m window --toggle float
+
+# Enable / Disable gaps in current workspace: ctrl + lalt - g
+ctrl + lalt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
+
+# Notes:
+# - To map a keybind to another keybind, you can do something like skhd -k 'ctrl - h'

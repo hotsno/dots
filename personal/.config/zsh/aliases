@@ -1,0 +1,11 @@
+alias ls="eza --icons --group-directories-first"
+alias ll="eza --icons --group-directories-first -l"
+
+alias a="~/Developer/keroro/.venv/bin/python3 ~/Developer/keroro/main.py"
+alias c="clear"
+
+alias cdd="cd ~/Developer/"
+alias cdt="cd ~/Developer/testing-area"
+
+# "Apply dots"
+alias ad="stow --dir=$HOME/.dots --no-folding personal"

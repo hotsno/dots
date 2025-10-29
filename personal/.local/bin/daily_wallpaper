@@ -1,0 +1,9 @@
+#!/bin/bash
+
+last_set_path="/tmp/wallpaper_last_set"
+if [ -f "$last_set_path" ] && [ $(<"$last_set_path") = $(date +"%Y-%m-%d") ]; then
+    echo "Already set random wallpaper today"
+else
+    random_wallpaper
+    date +"%Y-%m-%d" > $last_set_path
+fi

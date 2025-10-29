@@ -1,0 +1,12 @@
+#!/bin/bash
+
+PATH_TO_DISCORD_RICH_PRESENCE_PLEX="$HOME/Developer/kavita-presence"
+SESSION_NAME="kavita-presence"
+
+if tmux has-session -t $SESSION_NAME 2>/dev/null; then
+    tmux kill-session -t $SESSION_NAME
+fi
+
+COMMAND="cd $PATH_TO_DISCORD_RICH_PRESENCE_PLEX; ./.venv/bin/python3 main.py; zsh"
+
+tmux new-session -d -s $SESSION_NAME "$COMMAND"
